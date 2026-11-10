@@ -6,14 +6,13 @@ import { createLogger } from '@shared/utils';
 import { errorHandler } from './middleware/errorHandler';
 import { authRoutes } from './routes/auth.routes';
 import { userRoutes } from './routes/user.routes';
-import { healthController } from './controllers/health';
-import { metricsController } from './controllers/metrics';
+import { healthController, metricsController } from './controllers/health.controller';
 import { pool } from './database';
 
 const logger = createLogger('user-service');
 
 const app: Application = express();
-const PORT = process.env.USER_SERVICE_PORT || 3001;
+const PORT = Number(process.env.USER_SERVICE_PORT || 3001);
 const HOST = process.env.USER_SERVICE_HOST || '0.0.0.0';
 
 // Prometheus metrics

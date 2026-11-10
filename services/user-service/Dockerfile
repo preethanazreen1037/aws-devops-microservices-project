@@ -21,6 +21,7 @@ COPY services/user-service/src ./services/user-service/src
 WORKDIR /app/services/user-service
 
 RUN npm install
+RUN cd /app && npm run build --workspace=packages/shared
 RUN npm run build
 
 # Production stage
@@ -36,6 +37,7 @@ COPY packages/shared/package.json ./packages/shared/
 RUN npm install --production --workspace=packages/shared
 
 COPY packages/shared ./packages/shared
+COPY --from=builder /app/packages/shared/dist /app/packages/shared/dist
 
 COPY services/user-service/package*.json ./services/user-service/
 COPY services/user-service/tsconfig.json ./services/user-service/

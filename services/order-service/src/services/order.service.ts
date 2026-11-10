@@ -134,7 +134,7 @@ export const orderService = {
     }
   },
 
-  private async fetchProductDetails(items: OrderItemInput[]) {
+  async fetchProductDetails(items: OrderItemInput[]) {
     const productsWithDetails: { product: any; quantity: number }[] = [];
 
     for (const item of items) {
@@ -162,7 +162,7 @@ export const orderService = {
     return productsWithDetails;
   },
 
-  private async updateProductStock(items: OrderItemInput[]) {
+  async updateProductStock(items: OrderItemInput[]) {
     for (const item of items) {
       try {
         await axios.put(`${PRODUCT_SERVICE_URL}/products/${item.productId}/stock`, {

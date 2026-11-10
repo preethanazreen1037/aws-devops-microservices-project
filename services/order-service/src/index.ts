@@ -5,14 +5,14 @@ import promClient from 'prom-client';
 import { createLogger } from '@shared/utils';
 import { errorHandler } from './middleware/errorHandler';
 import { orderRoutes } from './routes/order.routes';
-import { healthController } from './controllers/health';
-import { metricsController } from './controllers/metrics';
+import { healthController } from './controllers/health.controller';
+import { metricsController } from './controllers/health.controller';
 import { pool } from './database';
 
 const logger = createLogger('order-service');
 
 const app: Application = express();
-const PORT = process.env.ORDER_SERVICE_PORT || 3003;
+const PORT = Number(process.env.ORDER_SERVICE_PORT || 3003);
 const HOST = process.env.ORDER_SERVICE_HOST || '0.0.0.0';
 
 // Prometheus metrics

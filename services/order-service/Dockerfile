@@ -21,6 +21,7 @@ COPY services/order-service/src ./services/order-service/src
 WORKDIR /app/services/order-service
 
 RUN npm install
+RUN cd /app && npm run build --workspace=packages/shared
 RUN npm run build
 
 # Production stage
@@ -36,6 +37,7 @@ COPY packages/shared/package.json ./packages/shared/
 RUN npm install --production --workspace=packages/shared
 
 COPY packages/shared ./packages/shared
+COPY --from=builder /app/packages/shared/dist /app/packages/shared/dist
 
 COPY services/order-service/package*.json ./services/order-service/
 COPY services/order-service/tsconfig.json ./services/order-service/

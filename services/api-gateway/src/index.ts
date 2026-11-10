@@ -10,12 +10,12 @@ import { authMiddleware } from './middleware/auth';
 import { errorHandler } from './middleware/errorHandler';
 import { routes } from './routes';
 import { healthController } from './controllers/health';
-import { metricsController } from './controllers/metrics';
+import { metricsController } from './controllers/health';
 
 const logger = createLogger('api-gateway');
 
 const app: Application = express();
-const PORT = process.env.GATEWAY_PORT || 3000;
+const PORT = Number(process.env.GATEWAY_PORT || 3000);
 const HOST = process.env.GATEWAY_HOST || '0.0.0.0';
 
 // Prometheus metrics
@@ -59,8 +59,9 @@ app.use(morgan('combined', {
 
 // Request ID middleware
 app.use((req, res, next) => {
-  req.id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-  res.setHeader('X-Request-ID', req.id);
+  const requestWithId = req as typeof req & { id: string };
+  requestWithId.id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  res.setHeader('X-Request-ID', requestWithId.id);
   next();
 });
 

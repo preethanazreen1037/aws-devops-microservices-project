@@ -12,7 +12,7 @@ export const healthController = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const health: ServiceHealth = {
+  const health: ServiceHealth & { checks: Record<string, boolean> } = {
     status: 'healthy',
     timestamp: new Date().toISOString(),
     service: 'api-gateway',
