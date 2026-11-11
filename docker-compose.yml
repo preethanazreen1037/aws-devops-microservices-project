@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: services/api-gateway/Dockerfile
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     environment:
       - NODE_ENV=production
       - GATEWAY_PORT=3000
@@ -37,7 +37,7 @@ services:
       context: .
       dockerfile: services/user-service/Dockerfile
     ports:
-      - "3001:3001"
+      - "127.0.0.1:3001:3001"
     environment:
       - NODE_ENV=production
       - USER_SERVICE_PORT=3001
@@ -68,7 +68,7 @@ services:
       context: .
       dockerfile: services/product-service/Dockerfile
     ports:
-      - "3002:3002"
+      - "127.0.0.1:3002:3002"
     environment:
       - NODE_ENV=production
       - PRODUCT_SERVICE_PORT=3002
@@ -97,7 +97,7 @@ services:
       context: .
       dockerfile: services/order-service/Dockerfile
     ports:
-      - "3003:3003"
+      - "127.0.0.1:3003:3003"
     environment:
       - NODE_ENV=production
       - ORDER_SERVICE_PORT=3003
