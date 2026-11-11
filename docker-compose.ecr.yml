@@ -1,0 +1,12 @@
+services:
+  user-service:
+    image: "359290219051.dkr.ecr.ap-south-1.amazonaws.com/microservices-task/user-service:${ECR_TAG:?Set_ECR_TAG}"
+    pull_policy: always
+
+  product-service:
+    image: "359290219051.dkr.ecr.ap-south-1.amazonaws.com/microservices-task/product-service:${ECR_TAG:?Set_ECR_TAG}"
+    pull_policy: always
+
+  order-service:
+    image: "359290219051.dkr.ecr.ap-south-1.amazonaws.com/microservices-task/order-service:${ECR_TAG:?Set_ECR_TAG}"
+    pull_policy: always
